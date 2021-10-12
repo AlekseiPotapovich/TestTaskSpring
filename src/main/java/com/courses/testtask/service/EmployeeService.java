@@ -30,14 +30,14 @@ public class EmployeeService {
         return employeeDao.read(id);
     }
 
-    public boolean create(Employee employee){
+    public Employee create(Employee employee){
         return employeeDao.create(employee);
     }
     public boolean delete(String id){
         return employeeDao.delete(id);
     }
-    public Employee update(Employee employee){
-        return employeeDao.update(employee);
+    public Employee update(Employee employee, String id){
+        return employeeDao.update(employee, id);
 
     }
     public List<Employee> show(){

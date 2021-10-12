@@ -24,28 +24,31 @@ public class EmployeeController {
 
     @GetMapping()
     public List<Employee> list(){
-        List<Employee> emp = employeeService.show();
+        List<Employee> employeeList = employeeService.show();
 
-        //return emp;
-        return employeeRepo.findAll();
+        return employeeList;
+        //return employeeRepo.findAll();
     }
     @GetMapping("{id}")
-    public Employee getOne(@PathVariable String id){
+    public Employee getOne(@PathVariable String id){// Employee employee){
+
+        //System.out.println(employeeService.readOne(id));
         return employeeService.readOne(id);
+
     }
     @PostMapping
-    public boolean create(@RequestBody Employee employee){
+    public Employee create(@RequestBody Employee employee){
         return employeeService.create(employee);
         //return employeeRepo.save(employee);
     }
     @PutMapping("{id}")
-    public Employee update(@PathVariable("id") Employee employeeFromDb, @RequestBody Employee employee){
-        return employeeService.update(employee);
-        //BeanUtils.copyProperties(employee, employeeFromDb);
+    public Employee update(@RequestBody Employee employee, @PathVariable String id){
+        return employeeService.update(employee, id);
+        //BeanUtils.copyProperties(employee, employeeFromDb,"id");
         //return employeeRepo.save(employeeFromDb);
     }
     @DeleteMapping("{id}")
-    public void delete(@PathVariable String id){
+    public void delete(@PathVariable String id){// Employee employee){
         employeeService.delete(id);
         //employeeRepo.delete(employee);
     }
